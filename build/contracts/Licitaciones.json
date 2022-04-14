@@ -1,0 +1,231 @@
+{
+  "contractName": "Licitaciones",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "licitacionesCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"licitacionesCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Licitaciones.sol\":\"Licitaciones\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Licitaciones.sol\":{\"keccak256\":\"0xfd40465da8d0462a4bc1cdc3ba0145ff935fc73bf5995eb787720c4092609906\",\"urls\":[\"bzz-raw://de1d2300dbcca334747352725eabb8fef550a797e8575dd5e03d3bbd4e9bdadb\",\"dweb:/ipfs/QmRxJntekwgAyYJrwPynkENkwvJviM9SAoGdAyNPMCxsvV\"]}},\"version\":1}",
+  "bytecode": "0x608060405260008055348015601357600080fd5b506080806100226000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80631722249f14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000548156fea265627a7a723158203660d97942fa9c947a9b902949f8d186df7f406f13e93c6c608a82fe7cf6e4a964736f6c63430005100032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80631722249f14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000548156fea265627a7a723158203660d97942fa9c947a9b902949f8d186df7f406f13e93c6c608a82fe7cf6e4a964736f6c63430005100032",
+  "sourceMap": "36:63:0:-;;;94:1;64:31;;36:63;8:9:-1;5:2;;;30:1;27;20:12;5:2;36:63:0;;;;;;;",
+  "deployedSourceMap": "36:63:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;36:63:0;;;;;;;;;;;;;;;;;;;64:31;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity >=0.5.16 <0.9.0;\r\n\r\ncontract Licitaciones{\r\n    uint public licitacionesCount=0;\r\n}",
+  "sourcePath": "D:\\workspace\\tfg-licitaciones\\contracts\\Licitaciones.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Licitaciones.sol",
+    "exportedSymbols": {
+      "Licitaciones": [
+        5
+      ]
+    },
+    "id": 6,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".16",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 5,
+        "linearizedBaseContracts": [
+          5
+        ],
+        "name": "Licitaciones",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 4,
+            "name": "licitacionesCount",
+            "nodeType": "VariableDeclaration",
+            "scope": 5,
+            "src": "64:31:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 2,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "64:4:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "30",
+              "id": 3,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "94:1:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_0_by_1",
+                "typeString": "int_const 0"
+              },
+              "value": "0"
+            },
+            "visibility": "public"
+          }
+        ],
+        "scope": 6,
+        "src": "36:63:0"
+      }
+    ],
+    "src": "0:99:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/Licitaciones.sol",
+      "exportedSymbols": {
+        "Licitaciones": [
+          5
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".16",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:32:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            5
+          ],
+          "name": "Licitaciones",
+          "scope": 6
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "licitacionesCount",
+              "scope": 5,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint",
+                  "type": "uint256"
+                },
+                "id": 2,
+                "name": "ElementaryTypeName",
+                "src": "64:4:0"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "30",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 0",
+                  "value": "0"
+                },
+                "id": 3,
+                "name": "Literal",
+                "src": "94:1:0"
+              }
+            ],
+            "id": 4,
+            "name": "VariableDeclaration",
+            "src": "64:31:0"
+          }
+        ],
+        "id": 5,
+        "name": "ContractDefinition",
+        "src": "36:63:0"
+      }
+    ],
+    "id": 6,
+    "name": "SourceUnit",
+    "src": "0:99:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x881c40FF50e94417Db1491cAFaa928170D02eC8D",
+      "transactionHash": "0x77ef890ad4b13013ab229d1f97ef077fa46979debb299ca94a717da2c0cc66c8"
+    }
+  },
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2022-04-14T20:02:50.874Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
