@@ -2,22 +2,33 @@ const generalService = require('./generalService.js');
 const Web3 = require("web3");
 const web3=new Web3('http://localhost:7545');
 const abi_contract= require("../../build/contracts/Licitaciones.json").abi;
-//const contract_address= require("../../build/contracts/Licitaciones.json").networks. 5777 .address;
+const contract_address= require("../../build/contracts/Licitaciones.json").networks[5777].address;
+const sender_address= process.env.PUBLIC_KEY;
 
 class PublicacionService {
-
     async createPublicacion(idExp, myFileHashes){
-        //console.log(contract_address);
-        console.log(abi_contract);
-        const Licitaciones =new web3.eth.Contract(abi_contract, "0x01b04fb58cfcEc00796e76856265BAd842ac7B77");
-        //console.log(Licitaciones);
-        Licitaciones.methods
+        const licitacionesContract =new web3.eth.Contract(abi_contract, contract_address);
+        licitacionesContract.methods
         .createPublicacion(idExp, myFileHashes.pbcg, myFileHashes.pbcp, myFileHashes.dipbcg, myFileHashes.dipbcp)
+        .send({from: sender_address, gas:3000000},function(err,res){
+            if(err){
+                console.log("An error occured", err);
+                return;
+            }
+            console.log("Hash of the transaction: " + res);
+        });
+    }
+
+    async searchPublicacion(myFileHash){
+        const licitacionesContract =new web3.eth.Contract(abi_contract, contract_address);
+        licitacionesContract.methods
+        .publicaciones(2)
         .call(function(err,res){
             if(err){
                 console.log("An error occured", err);
                 return;
             }
+            console.log(res);
             console.log("Hash of the transaction: " + res);
         });
     }

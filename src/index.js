@@ -2,7 +2,10 @@ const express = require("express");
 const fs = require('fs');
 const crypto = require('crypto');
 const router = express.Router();
+const dotenv = require('dotenv');
 const app = express();
+
+dotenv.config();
 
 require('./routes/publicacion.routes.js')(router);
 
