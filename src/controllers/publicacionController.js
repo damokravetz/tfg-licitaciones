@@ -24,6 +24,15 @@ class PublicacionController {
         res.send('Saludos desde express');
     }
 
+    async search(req, res) {
+
+        let fileHash = req.query.fileHash;
+
+        let publications=await publicationService.searchPublicacion(fileHash);
+
+        res.send(publications);
+    }
+
     
     
     

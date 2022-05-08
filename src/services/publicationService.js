@@ -19,18 +19,27 @@ class PublicacionService {
         });
     }
 
-    async searchPublicacion(myFileHash){
+    async searchPublicacion(fileHash){
         const licitacionesContract =new web3.eth.Contract(abi_contract, contract_address);
-        licitacionesContract.methods
-        .publicaciones(2)
-        .call(function(err,res){
-            if(err){
-                console.log("An error occured", err);
-                return;
+        let publicacionCount=await licitacionesContract.methods.publicacionCount().call();
+        let publicaciones=[];
+        console.log(publicacionCount);
+        for(var i=1; i<=publicacionCount;i++){
+            let myPublicacion=await licitacionesContract.methods.publicaciones(i).call();
+            if(myPublicacion.pbcg==fileHash||myPublicacion.pbcp==fileHash||myPublicacion.dipbcg==fileHash||myPublicacion.dipbcp==fileHash){
+
+                let publicacionSchema = {
+                    "id": myPublicacion.id,
+                    "idExpediente": myPublicacion.idExpediente, 
+                    "pbcg": myPublicacion.pbcg, 
+                    "pbcp": myPublicacion.pbcp, 
+                    "dipbcg": myPublicacion.dipbcg, 
+                    "dipbcp": myPublicacion.dipbcp 
+                };
+                publicaciones.push(publicacionSchema);
             }
-            console.log(res);
-            console.log("Hash of the transaction: " + res);
-        });
+        }
+        return publicaciones;
     }
     
     fetchFiles(idExp) {
