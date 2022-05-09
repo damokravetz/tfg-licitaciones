@@ -7,39 +7,39 @@ const sender_address= process.env.PUBLIC_KEY;
 
 class PublicacionService {
     async createPublicacion(idExp, myFileHashes){
-        const licitacionesContract =new web3.eth.Contract(abi_contract, contract_address);
-        licitacionesContract.methods
-        .createPublicacion(idExp, myFileHashes.pbcg, myFileHashes.pbcp, myFileHashes.dipbcg, myFileHashes.dipbcp)
-        .send({from: sender_address, gas:3000000},function(err,res){
-            if(err){
-                console.log("An error occured", err);
-                return;
-            }
-            console.log("Hash of the transaction: " + res);
-        });
+        const licitacionesContract = new web3.eth.Contract(abi_contract, contract_address);
+        try {
+            return await licitacionesContract.methods.createPublicacion(idExp, myFileHashes.pbcg, myFileHashes.pbcp, myFileHashes.dipbcg, myFileHashes.dipbcp)
+                .send({ from: sender_address, gas: 3000000 })
+        } catch (err) {
+            throw new Error("An error ocurred while trying to reach the smart contract");
+        }
     }
 
-    async searchPublicacion(fileHash){
-        const licitacionesContract =new web3.eth.Contract(abi_contract, contract_address);
-        let publicacionCount=await licitacionesContract.methods.publicacionCount().call();
-        let publicaciones=[];
-        console.log(publicacionCount);
-        for(var i=1; i<=publicacionCount;i++){
-            let myPublicacion=await licitacionesContract.methods.publicaciones(i).call();
-            if(myPublicacion.pbcg==fileHash||myPublicacion.pbcp==fileHash||myPublicacion.dipbcg==fileHash||myPublicacion.dipbcp==fileHash){
+    async searchPublicacion(fileHash) {
+        const licitacionesContract = new web3.eth.Contract(abi_contract, contract_address);
+        try {
+            let publicacionCount = await licitacionesContract.methods.publicacionCount().call();
+            let publicaciones = [];
+            for (var i = 1; i <= publicacionCount; i++) {
+                let myPublicacion = await licitacionesContract.methods.publicaciones(i).call();
+                if (myPublicacion.pbcg == fileHash || myPublicacion.pbcp == fileHash || myPublicacion.dipbcg == fileHash || myPublicacion.dipbcp == fileHash) {
 
-                let publicacionSchema = {
-                    "id": myPublicacion.id,
-                    "idExpediente": myPublicacion.idExpediente, 
-                    "pbcg": myPublicacion.pbcg, 
-                    "pbcp": myPublicacion.pbcp, 
-                    "dipbcg": myPublicacion.dipbcg, 
-                    "dipbcp": myPublicacion.dipbcp 
-                };
-                publicaciones.push(publicacionSchema);
+                    let publicacionSchema = {
+                        "id": myPublicacion.id,
+                        "idExpediente": myPublicacion.idExpediente,
+                        "pbcg": myPublicacion.pbcg,
+                        "pbcp": myPublicacion.pbcp,
+                        "dipbcg": myPublicacion.dipbcg,
+                        "dipbcp": myPublicacion.dipbcp
+                    };
+                    publicaciones.push(publicacionSchema);
+                }
             }
+            return publicaciones;
+        } catch (err) {
+            throw new Error("An error ocurred while trying to reach the smart contract");
         }
-        return publicaciones;
     }
     
     fetchFiles(idExp) {
@@ -63,7 +63,7 @@ class PublicacionService {
             myFiles = { "pbcg": myPbcgFiles[0], "pbcp": myPbcpFiles[0], "dipbcg": myDipbcgFiles[0], "dipbcp": myDipbcpFiles[0] };
 
         } else {
-            myFiles = {};
+            throw new Error("There are not matching files for that expedient");
         }
         return myFiles;
     }
