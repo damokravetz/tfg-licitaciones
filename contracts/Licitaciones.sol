@@ -1,9 +1,10 @@
 pragma solidity >=0.5.16 <0.9.0;
 
 contract Licitaciones{
+  
     uint public publicacionCount=0;
-    uint public ofertaCount=0;
     uint public adjudicacionCount=0;
+    uint public suscripcionCount=0;
 
   struct Publicacion {
     uint id;
@@ -15,10 +16,11 @@ contract Licitaciones{
     uint timestamp;
   }
 
-  struct Oferta {
+  struct Suscripcion {
     uint id;
     string idExpediente;
-    string comprobante;
+    string convenio;
+    string garantia;
     uint timestamp;
   }
 
@@ -31,9 +33,9 @@ contract Licitaciones{
 
   mapping(uint => Publicacion) public publicaciones;
 
-  mapping(uint => Oferta) public ofertas;
-
   mapping(uint => Adjudicacion) public adjudicaciones;
+
+  mapping(uint => Suscripcion) public suscripciones;
 
   event PublicacionCreated(
     uint id,
@@ -45,10 +47,11 @@ contract Licitaciones{
     uint timestamp
   );
 
-  event OfertaCreated(
+  event SuscripcionCreated(
     uint id,
     string idExpediente,
-    string comprobante,
+    string convenio,
+    string garantia,
     uint timestamp
   );
 
@@ -59,33 +62,9 @@ contract Licitaciones{
     uint timestamp
   );
 
-  event PublicacionFound(
-    uint id,
-    string idExpediente,
-    string pbcg,
-    string pbcp,
-    string dipbcg,
-    string dipbcp,
-    uint timestamp
-  );
-
-  event OfertaFound(
-    uint id,
-    string idExpediente,
-    string comprobante,
-    uint timestamp
-  );
-
-  event AdjudicacionFound(
-    uint id,
-    string idExpediente,
-    string disposicion,
-    uint timestamp
-  );
-
   constructor() public {
     createPublicacion("EE-Prueba-01", "prueba-pbcg", "prueba-pbcp", "prueba-dipbcg", "prueba-dipbcp");
-    createOferta("EE-Prueba-01", "prueba-comprobante");
+    createSuscripcion("EE-Prueba-01", "prueba-convenio", "prueba-garantia");
     createAdjudicacion("EE-Prueba-01", "prueba-di");
   }
 
@@ -95,10 +74,10 @@ contract Licitaciones{
     emit PublicacionCreated(publicacionCount, _idExpediente, _pbcg, _pbcp, _dipbcg, _dipbcp, block.timestamp);
   }
 
-  function createOferta(string memory _idExpediente, string memory _comprobante) public {
-    ofertaCount ++;
-    ofertas[ofertaCount] = Oferta(ofertaCount, _idExpediente, _comprobante, block.timestamp);
-    emit OfertaCreated(ofertaCount, _idExpediente, _comprobante, block.timestamp);
+  function createSuscripcion(string memory _idExpediente, string memory _convenio, string memory _garantia) public {
+    suscripcionCount ++;
+    suscripciones[suscripcionCount] = Suscripcion(suscripcionCount, _idExpediente, _convenio, _garantia, block.timestamp);
+    emit SuscripcionCreated(suscripcionCount, _idExpediente, _convenio, _garantia, block.timestamp);
   }
 
   function createAdjudicacion(string memory _idExpediente, string memory _disposicion) public {

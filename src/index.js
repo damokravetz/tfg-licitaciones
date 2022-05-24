@@ -8,6 +8,8 @@ const app = express();
 dotenv.config();
 
 require('./routes/publicacion.routes.js')(router);
+require('./routes/adjudicacion.routes.js')(router);
+require('./routes/suscripcion.routes.js')(router);
 
 app.use('/api', router);
 

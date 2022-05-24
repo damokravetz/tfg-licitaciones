@@ -16,14 +16,14 @@ class PublicacionService {
         }
     }
 
-    async searchPublicacion(fileHash) {
+    async searchPublicacion(query) {
         const licitacionesContract = new web3.eth.Contract(abi_contract, contract_address);
         try {
             let publicacionCount = await licitacionesContract.methods.publicacionCount().call();
             let publicaciones = [];
             for (var i = 1; i <= publicacionCount; i++) {
                 let myPublicacion = await licitacionesContract.methods.publicaciones(i).call();
-                if (myPublicacion.pbcg == fileHash || myPublicacion.pbcp == fileHash || myPublicacion.dipbcg == fileHash || myPublicacion.dipbcp == fileHash) {
+                if (myPublicacion.idExpediente == query || myPublicacion.pbcg == query || myPublicacion.pbcp == query || myPublicacion.dipbcg == query || myPublicacion.dipbcp == query) {
 
                     let publicacionSchema = {
                         "id": myPublicacion.id,
@@ -31,7 +31,8 @@ class PublicacionService {
                         "pbcg": myPublicacion.pbcg,
                         "pbcp": myPublicacion.pbcp,
                         "dipbcg": myPublicacion.dipbcg,
-                        "dipbcp": myPublicacion.dipbcp
+                        "dipbcp": myPublicacion.dipbcp,
+                        "timestamp": new Date(myPublicacion.timestamp).toDateString()
                     };
                     publicaciones.push(publicacionSchema);
                 }
@@ -41,7 +42,7 @@ class PublicacionService {
             throw new Error("An error ocurred while trying to reach the smart contract");
         }
     }
-    
+
     fetchFiles(idExp) {
         //busco el archivo del pliego de condiciones generales
         let myPbcgFiles = this.fetchPbcg(idExp);

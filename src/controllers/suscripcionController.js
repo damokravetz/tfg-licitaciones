@@ -1,7 +1,7 @@
-const publicationService = require('../services/publicationService.js');
+const adjudicacionService = require('../services/adjudicacionService.js');
 const generalService = require('../services/generalService.js');
 
-class PublicacionController {
+class AdjudicacionController {
     async create(req, res) {
 
         //extraigo el id del expediente enviado en los parametros de la solicitud
@@ -10,7 +10,7 @@ class PublicacionController {
         let response;
         try {
             //busco los archivos
-            let myFiles = publicationService.fetchFiles(idExp);
+            let myFiles = adjudicacionService.fetchFiles(idExp);
 
             //hasheo los archivos y creo un objeto con los hashes
             let myFileHashes = {
@@ -21,7 +21,7 @@ class PublicacionController {
             };
             
             //creo la constancia en la blockchain
-            response=await publicationService.createPublicacion(idExp, myFileHashes);
+            response=await adjudicacionService.createAdjudicacion(idExp, myFileHashes);
         } catch (err) {
             response=err.message;
         }
@@ -37,7 +37,7 @@ class PublicacionController {
         let response;
         try{
             //busco la publicacion en la blockchain comparando con el hash
-            response=await publicationService.searchPublicacion(myQuery);
+            response=await adjudicacionService.searchAdjudicacion(myQuery);
         }catch(err){
             response=err.message;
         }
@@ -45,4 +45,4 @@ class PublicacionController {
     }
     
 }
-module.exports = new PublicacionController();
+module.exports = new AdjudicacionController();
