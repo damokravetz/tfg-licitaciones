@@ -1,7 +1,7 @@
-const adjudicacionService = require('../services/adjudicacionService.js');
+const suscripcionService = require('../services/suscripcionService.js');
 const generalService = require('../services/generalService.js');
 
-class AdjudicacionController {
+class SuscripcionController {
     async create(req, res) {
 
         //extraigo el id del expediente enviado en los parametros de la solicitud
@@ -10,18 +10,16 @@ class AdjudicacionController {
         let response;
         try {
             //busco los archivos
-            let myFiles = adjudicacionService.fetchFiles(idExp);
+            let myFiles = suscripcionService.fetchFiles(idExp);
 
             //hasheo los archivos y creo un objeto con los hashes
             let myFileHashes = {
-                "pbcg": generalService.hashFile(myFiles.pbcg),
-                "pbcp": generalService.hashFile(myFiles.pbcp),
-                "dipbcg": generalService.hashFile(myFiles.dipbcg),
-                "dipbcp": generalService.hashFile(myFiles.dipbcp)
+                "convenio": generalService.hashFile(myFiles.convenio),
+                "garantia": generalService.hashFile(myFiles.garantia)
             };
             
             //creo la constancia en la blockchain
-            response=await adjudicacionService.createAdjudicacion(idExp, myFileHashes);
+            response=await suscripcionService.createSuscripcion(idExp, myFileHashes);
         } catch (err) {
             response=err.message;
         }
@@ -37,7 +35,7 @@ class AdjudicacionController {
         let response;
         try{
             //busco la publicacion en la blockchain comparando con el hash
-            response=await adjudicacionService.searchAdjudicacion(myQuery);
+            response=await suscripcionService.searchSuscripcion(myQuery);
         }catch(err){
             response=err.message;
         }
@@ -45,4 +43,4 @@ class AdjudicacionController {
     }
     
 }
-module.exports = new AdjudicacionController();
+module.exports = new SuscripcionController();

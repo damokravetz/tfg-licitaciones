@@ -23,6 +23,7 @@ class PublicacionController {
             //creo la constancia en la blockchain
             response=await publicationService.createPublicacion(idExp, myFileHashes);
         } catch (err) {
+            console.log(err)
             response=err.message;
         }
 
