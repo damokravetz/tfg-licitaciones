@@ -20,6 +20,8 @@ class PublicacionController {
                 "dipbcp": generalService.hashFile(myFiles.dipbcp)
             };
             
+            console.log(myFileHashes);
+
             //creo la constancia en la blockchain
             response=await publicationService.createPublicacion(idExp, myFileHashes);
         } catch (err) {

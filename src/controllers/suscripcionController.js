@@ -17,6 +17,8 @@ class SuscripcionController {
                 "convenio": generalService.hashFile(myFiles.convenio),
                 "garantia": generalService.hashFile(myFiles.garantia)
             };
+
+            console.log(myFileHashes);
             
             //creo la constancia en la blockchain
             response=await suscripcionService.createSuscripcion(idExp, myFileHashes);

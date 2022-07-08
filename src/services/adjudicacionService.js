@@ -29,7 +29,7 @@ class AdjudicacionService {
                         "id": myAdjudicacion.id,
                         "idExpediente": myAdjudicacion.idExpediente,
                         "disposicion": myAdjudicacion.disposicion,
-                        "timestamp": new Date(myAdjudicacion.timestamp).toDateString()
+                        "timestamp": myAdjudicacion.timestamp
                     };
                     adjudicaciones.push(adjudicacionSchema);
                 }

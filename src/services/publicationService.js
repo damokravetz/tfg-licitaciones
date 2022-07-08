@@ -32,7 +32,7 @@ class PublicacionService {
                         "pbcp": myPublicacion.pbcp,
                         "dipbcg": myPublicacion.dipbcg,
                         "dipbcp": myPublicacion.dipbcp,
-                        "timestamp": new Date(myPublicacion.timestamp).toDateString()
+                        "timestamp": myPublicacion.timestamp
                     };
                     publicaciones.push(publicacionSchema);
                 }

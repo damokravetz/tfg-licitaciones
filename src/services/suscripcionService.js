@@ -30,7 +30,7 @@ class SuscripcionService {
                         "idExpediente": mySuscripcion.idExpediente,
                         "convenio": mySuscripcion.convenio,
                         "garantia": mySuscripcion.garantia,
-                        "timestamp": new Date(mySuscripcion.timestamp).toDateString()
+                        "timestamp": mySuscripcion.timestamp
                     };
                     suscripciones.push(suscripcionSchema);
                 }

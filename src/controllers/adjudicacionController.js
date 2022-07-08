@@ -17,6 +17,8 @@ class AdjudicacionController {
                 "disposicion": generalService.hashFile(myFiles.disposicion)
             };
             
+            console.log(myFileHashes);
+            
             //creo la constancia en la blockchain
             response=await adjudicacionService.createAdjudicacion(idExp, myFileHashes);
         } catch (err) {
